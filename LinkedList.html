@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LinkedList Program</title>
+  <style>
+    .node {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      text-align: center;
+      margin-right: 10px;
+    }
+  </style>
+  <script>
+    // Definisikan struktur Node
+    class Node {
+      constructor(data) {
+        this.data = data;
+        this.next = null;
+      }
+    }
+
+    // Definisikan LinkedList
+    class LinkedList {
+      constructor() {
+        this.head = null;
+      }
+
+      addNode(data) {
+        const newNode = new Node(data);
+
+        if (!this.head) {
+          this.head = newNode;
+        } else {
+          let current = this.head;
+          while (current.next) {
+            current = current.next;
+          }
+          current.next = newNode;
+        }
+
+        this.displayList();
+      }
+
+      removeNode(data) {
+        if (!this.head) {
+          return;
+        }
+
+        if (this.head.data === data) {
+          this.head = this.head.next;
+        } else {
+          let current = this.head;
+          let previous = null;
+          while (current && current.data !== data) {
+            previous = current;
+            current = current.next;
+          }
+          if (current) {
+            previous.next = current.next;
+          }
+        }
+
+        this.displayList();
+      }
+
+      displayList() {
+        const listContainer = document.getElementById("listContainer");
+        listContainer.innerHTML = "";
+
+        let current = this.head;
+        while (current) {
+          const nodeElement = document.createElement("div");
+          nodeElement.classList.add("node");
+          nodeElement.textContent = current.data;
+          listContainer.appendChild(nodeElement);
+          current = current.next;
+        }
+      }
+    }
+
+    // Inisialisasi LinkedList
+    const linkedList = new LinkedList();
+
+    function addNode() {
+      const data = document.getElementById("nodeInput").value;
+      linkedList.addNode(data);
+      document.getElementById("nodeInput").value = "";
+    }
+
+    function removeNode() {
+      const data = document.getElementById("nodeInput").value;
+      linkedList.removeNode(data);
+      document.getElementById("nodeInput").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>LinkedList Program</h1>
+  <label for="nodeInput">Masukkan elemen:</label>
+  <input type="text" id="nodeInput">
+  <button onclick="addNode()">Tambahkan</button>
+  <button onclick="removeNode()">Hapus</button>
+  <div id="listContainer"></div>
+</body>
+</html>

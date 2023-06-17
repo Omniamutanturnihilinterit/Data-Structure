@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Record Program</title>
+  <script>
+    var records = []; // Array untuk menyimpan catatan
+
+    function addRecord() {
+      // Mengambil input dari pengguna
+      var record = document.getElementById("recordInput").value;
+
+      // Menambahkan catatan ke array records
+      records.push(record);
+
+      // Membersihkan input field
+      document.getElementById("recordInput").value = "";
+
+      // Memperbarui tampilan catatan
+      displayRecords();
+    }
+
+    function displayRecords() {
+      var recordList = document.getElementById("recordList");
+
+      // Menghapus konten sebelumnya
+      while (recordList.firstChild) {
+        recordList.firstChild.remove();
+      }
+
+      // Menambahkan setiap catatan ke daftar
+      for (var i = 0; i < records.length; i++) {
+        var recordItem = document.createElement("li");
+        recordItem.innerText = records[i];
+        recordList.appendChild(recordItem);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Record Program</h1>
+  <label for="recordInput">Masukkan catatan:</label>
+  <input type="text" id="recordInput">
+  <button onclick="addRecord()">Tambahkan</button>
+  <h2>Catatan:</h2>
+  <ul id="recordList"></ul>
+</body>
+</html>

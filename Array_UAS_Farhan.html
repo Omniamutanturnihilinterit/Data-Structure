@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program Array | M Farhan</title>
+  <script>
+    function manipulateArray() {
+      var arr = [10, 20, 30, 40, 50]; // Membuat array dengan elemen-elemennya
+
+      // Menambahkan elemen baru ke array
+      arr.push(60);
+      arr.push(70);
+
+      // Mengubah nilai elemen array
+      arr[2] = 35;
+
+      // Menghapus elemen dari array
+      arr.pop();
+
+      // Menampilkan elemen-elemen array di console
+      for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+
+      // Menampilkan hasil di halaman HTML
+      var resultElement = document.getElementById("result");
+      resultElement.innerHTML = "Elemen-elemen array: " + arr.join(", ");
+    }
+  </script>
+</head>
+<body>
+  <h1>Program Array | UAS</h1>
+
+  <button onclick="manipulateArray()">Manipulasi Array</button>
+
+  <p id="result"></p>
+</body>
+</html>

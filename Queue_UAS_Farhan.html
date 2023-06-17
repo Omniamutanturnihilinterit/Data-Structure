@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program Queue</title>
+  <style>
+    #output {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Program Queue | Muhammad Farhan | UAS</h1>
+
+  <label for="input">Input:</label>
+  <input type="text" id="input">
+  <button onclick="enqueue()">Enqueue</button>
+  <button onclick="dequeue()">Dequeue</button>
+
+  <h2>Queue:</h2>
+  <pre id="output"></pre>
+
+  <script>
+    // Membuat antrian kosong
+    var queue = [];
+
+    function enqueue() {
+      var inputElement = document.getElementById('input');
+      var item = inputElement.value;
+      
+      if (item !== '') {
+        queue.push(item);
+        inputElement.value = '';
+        displayQueue();
+      }
+    }
+
+    function dequeue() {
+      if (queue.length > 0) {
+        var dequeuedItem = queue.shift();
+        displayQueue();
+        alert('Dequeued item: ' + dequeuedItem);
+      }
+    }
+
+    function displayQueue() {
+      var outputElement = document.getElementById('output');
+      outputElement.textContent = JSON.stringify(queue, null, 2);
+    }
+  </script>
+</body>
+</html>
